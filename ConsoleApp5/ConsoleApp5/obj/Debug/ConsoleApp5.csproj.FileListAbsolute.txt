@@ -6,3 +6,11 @@ C:\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.CoreCompileInputs.
 C:\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe
 C:\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.pdb
 C:\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe.config
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.exe.config
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.pdb
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.AssemblyReference.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe.config
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.CoreCompileInputs.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.pdb

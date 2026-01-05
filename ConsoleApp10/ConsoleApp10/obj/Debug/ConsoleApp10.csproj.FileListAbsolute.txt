@@ -1,0 +1,8 @@
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\bin\Debug\ConsoleApp10.exe.config
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\bin\Debug\ConsoleApp10.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\bin\Debug\ConsoleApp10.pdb
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\obj\Debug\ConsoleApp10.csproj.AssemblyReference.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\obj\Debug\ConsoleApp10.csproj.CoreCompileInputs.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\obj\Debug\ConsoleApp10.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\obj\Debug\ConsoleApp10.pdb
+C:\Unity Study\Lion7project\Lion7\ConsoleApp10\ConsoleApp10\obj\Debug\ConsoleApp10.exe.config
