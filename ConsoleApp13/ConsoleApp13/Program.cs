@@ -10,24 +10,12 @@ namespace ConsoleApp13
     {
         static void Main(string[] args)
         {
-            //System.Int32 number = 123;
-            //System.String text = "Hello";
-            //System.Boolean flag = true;
+            //var를 사용하여 변수 선언
+            var name = "Alice";
+            var age = 25;
+            var isStudent = true;
 
-            //Console.WriteLine($"number: {number}, text: {text}, flag: {flag}");
-
-            int number = 123;
-            string numberAsString = number.ToString(); //정수를 문자열로 변환
-
-            bool flag = true;
-            string flagAsString = flag.ToString(); //논리값을 문자열로 변환
-
-            string text = "456";
-            int stringAsNumber = int.Parse(text); //문자열을 정수로 변환
-            
-            Console.WriteLine(numberAsString); //"123"
-            Console.WriteLine(flagAsString); //"True"
-            Console.WriteLine(stringAsNumber); //456
+            Console.WriteLine($"이름 : {name}, 나이 : {age}, 학생 여부 : {isStudent}");
         }
     }
 }
