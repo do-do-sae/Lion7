@@ -1,0 +1,8 @@
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\bin\Debug\ConsoleApp41.exe.config
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\bin\Debug\ConsoleApp41.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\bin\Debug\ConsoleApp41.pdb
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\obj\Debug\ConsoleApp41.csproj.AssemblyReference.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\obj\Debug\ConsoleApp41.csproj.CoreCompileInputs.cache
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\obj\Debug\ConsoleApp41.exe
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\obj\Debug\ConsoleApp41.pdb
+C:\Unity Study\Lion7project\Lion7\ConsoleApp41\ConsoleApp41\obj\Debug\ConsoleApp41.exe.config

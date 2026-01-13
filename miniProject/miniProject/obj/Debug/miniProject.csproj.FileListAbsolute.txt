@@ -1,0 +1,8 @@
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\bin\Debug\miniProject.exe.config
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\bin\Debug\miniProject.exe
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\bin\Debug\miniProject.pdb
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\obj\Debug\miniProject.csproj.AssemblyReference.cache
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\obj\Debug\miniProject.csproj.CoreCompileInputs.cache
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\obj\Debug\miniProject.exe
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\obj\Debug\miniProject.pdb
+C:\Unity Study\Lion7project\Lion7\miniProject\miniProject\obj\Debug\miniProject.exe.config

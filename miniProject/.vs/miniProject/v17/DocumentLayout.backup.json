@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Unity Study\\Lion7project\\Lion7\\miniProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5FF9CF24-A1C2-4EF6-96F4-8CAB1400CA14}|miniProject\\miniProject.csproj|c:\\unity study\\lion7project\\lion7\\miniproject\\miniproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FF9CF24-A1C2-4EF6-96F4-8CAB1400CA14}|miniProject\\miniProject.csproj|solutionrelative:miniproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\miniProject\\miniProject\\Program.cs",
+              "RelativeDocumentMoniker": "miniProject\\Program.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\miniProject\\miniProject\\Program.cs*",
+              "RelativeToolTip": "miniProject\\Program.cs*",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAywPoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T08:13:49.81Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -131,22 +131,22 @@ namespace ConsoleApp33
             //}
 
 
-            //가변 배열
-            string[][] raid = new string[3][];
+            ////가변 배열
+            //string[][] raid = new string[3][];
 
-            raid[0] = new string[] { "전사", "힐러", "마법사", "궁수" };
-            raid[1] = new string[] { "도적", "전사", "힐러" };
-            raid[2] = new string[] { "마법사", "궁수", "힐러", "전사", "탱커" };
+            //raid[0] = new string[] { "전사", "힐러", "마법사", "궁수" };
+            //raid[1] = new string[] { "도적", "전사", "힐러" };
+            //raid[2] = new string[] { "마법사", "궁수", "힐러", "전사", "탱커" };
 
-            Console.WriteLine("=== 레이드 파티 구성 ===");
-            for (int i = 0; i < raid.Length; i++)
-            {
-                Console.WriteLine($"파티 {i + 1} ({raid[i].Length}명): ");
-                for (int j = 0; j < raid[i].Length; j++)
-                {
-                    Console.WriteLine($" - {raid[i][j]}");
-                }
-            }
+            //Console.WriteLine("=== 레이드 파티 구성 ===");
+            //for (int i = 0; i < raid.Length; i++)
+            //{
+            //    Console.WriteLine($"파티 {i + 1} ({raid[i].Length}명): ");
+            //    for (int j = 0; j < raid[i].Length; j++)
+            //    {
+            //        Console.WriteLine($" - {raid[i][j]}");
+            //    }
+            //}
 
             ////동적배열
             //List<int> numbers = new List<int>(); //빈 리스트
@@ -192,7 +192,7 @@ namespace ConsoleApp33
             ////특정 위치에 추가(Insert)
             //inventory.Insert(1, "전설 검");
 
-            //for (int i = 0;i < inventory.Count; i++)
+            //for (int i = 0; i < inventory.Count; i++)
             //{
             //    Console.WriteLine($"[{i + 1}] {inventory[i]}");
             //}
@@ -226,14 +226,14 @@ namespace ConsoleApp33
 
             //Console.WriteLine("=== 캐릭터 스탯 ===");
 
-            //foreach(KeyValuePair<string, int> stat in stats)
+            //foreach (KeyValuePair<string, int> stat in stats)
             //{
             //    Console.WriteLine($"{stat.Key}: {stat.Value}");
             //}
             ////키 존재 확인
             //string searchStat = "방어력";
 
-            //if(stats.ContainsKey(searchStat))
+            //if (stats.ContainsKey(searchStat))
             //{
             //    Console.WriteLine(stats[searchStat]);
             //}
@@ -241,41 +241,41 @@ namespace ConsoleApp33
             //{
             //    Console.WriteLine("해당스탯이 없습니다.");
             //}
-            //Dictionary<string, int> Item =new Dictionary<string, int>();
-            //Item.Add("회복 포션", 50);
-            //Item.Add("마나 포션", 40);
-            //Item.Add("강철 검", 500);
-            //Item.Add("가죽 갑옷", 300);
-            //Item.Add("마법 반지", 1000);
+            Dictionary<string, int> Item = new Dictionary<string, int>();
+            Item.Add("회복 포션", 50);
+            Item.Add("마나 포션", 40);
+            Item.Add("강철 검", 500);
+            Item.Add("가죽 갑옷", 300);
+            Item.Add("마법 반지", 1000);
 
-            //Console.WriteLine("=== 상점 아이템 ===");
-            //foreach(KeyValuePair<string, int> items in Item)
-            //{
-            //    Console.WriteLine($"{items.Key}: {items.Value}골드");
-            //}
-            //Console.WriteLine();
-            //int playerGold = 900;
-            //Console.Write($"구매할 아이템을 입력하세요(사용 가능 골드 : {playerGold}): ");
-            //string radItem = Console.ReadLine();
+            Console.WriteLine("=== 상점 아이템 ===");
+            foreach (KeyValuePair<string, int> items in Item)
+            {
+                Console.WriteLine($"{items.Key}: {items.Value}골드");
+            }
+            Console.WriteLine();
+            int playerGold = 900;
+            Console.Write($"구매할 아이템을 입력하세요(사용 가능 골드 : {playerGold}): ");
+            string radItem = Console.ReadLine();
 
-            //if (Item.ContainsKey(radItem))
-            //{
-            //    int itemPrice = Item[radItem];
-            //    if(itemPrice <= playerGold )
-            //    {
-            //        playerGold -= itemPrice;
-            //        Console.WriteLine($"'{radItem}' 구매 성공!");
-            //        Console.WriteLine($"남은 골드 : {playerGold}골드");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("골드 부족..");
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine("정확히 입력해주세요");
-            //}
+            if (Item.ContainsKey(radItem))
+            {
+                int itemPrice = Item[radItem];
+                if (itemPrice <= playerGold)
+                {
+                    playerGold -= itemPrice;
+                    Console.WriteLine($"'{radItem}' 구매 성공!");
+                    Console.WriteLine($"남은 골드 : {playerGold}골드");
+                }
+                else
+                {
+                    Console.WriteLine("골드 부족..");
+                }
+            }
+            else
+            {
+                Console.WriteLine("정확히 입력해주세요");
+            }
 
 
 
