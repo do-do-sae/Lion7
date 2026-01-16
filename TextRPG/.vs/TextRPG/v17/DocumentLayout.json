@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|c:\\unity study\\lion7project\\lion7\\textrpg\\textrpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{841F568E-092E-4C67-BDCC-777DC6194E57}|TextRPG\\TextRPG.csproj|solutionrelative:textrpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Field.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Field.cs",
+              "RelativeDocumentMoniker": "TextRPG\\Field.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Field.cs",
+              "RelativeToolTip": "TextRPG\\Field.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAxwE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:37:07.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Monster.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Monster.cs",
+              "RelativeDocumentMoniker": "TextRPG\\Monster.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Monster.cs",
+              "RelativeToolTip": "TextRPG\\Monster.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:32:39.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainGame.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\MainGame.cs",
+              "RelativeDocumentMoniker": "TextRPG\\MainGame.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\MainGame.cs",
+              "RelativeToolTip": "TextRPG\\MainGame.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAmwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:23:37.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "INFO.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\INFO.cs",
+              "RelativeDocumentMoniker": "TextRPG\\INFO.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\INFO.cs",
+              "RelativeToolTip": "TextRPG\\INFO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:13:09.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Player.cs",
+              "RelativeDocumentMoniker": "TextRPG\\Player.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Player.cs",
+              "RelativeToolTip": "TextRPG\\Player.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAmwD8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:11:21.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Program.cs",
+              "RelativeDocumentMoniker": "TextRPG\\Program.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\TextRPG\\TextRPG\\Program.cs",
+              "RelativeToolTip": "TextRPG\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:10:56.329Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

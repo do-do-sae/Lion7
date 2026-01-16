@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Unity Study\\Lion7project\\Lion7\\ConsoleApp57\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{363AA67E-9CF9-4F19-ABA2-F7EADEA954BE}|ConsoleApp57\\ConsoleApp57.csproj|c:\\unity study\\lion7project\\lion7\\consoleapp57\\consoleapp57\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{363AA67E-9CF9-4F19-ABA2-F7EADEA954BE}|ConsoleApp57\\ConsoleApp57.csproj|solutionrelative:consoleapp57\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Unity Study\\Lion7project\\Lion7\\ConsoleApp57\\ConsoleApp57\\Program.cs",
+              "RelativeDocumentMoniker": "ConsoleApp57\\Program.cs",
+              "ToolTip": "C:\\Unity Study\\Lion7project\\Lion7\\ConsoleApp57\\ConsoleApp57\\Program.cs*",
+              "RelativeToolTip": "ConsoleApp57\\Program.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAywDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T04:13:21.972Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

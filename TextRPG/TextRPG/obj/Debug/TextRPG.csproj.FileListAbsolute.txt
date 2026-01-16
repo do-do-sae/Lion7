@@ -1,0 +1,8 @@
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\bin\Debug\TextRPG.exe.config
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\bin\Debug\TextRPG.exe
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\bin\Debug\TextRPG.pdb
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\obj\Debug\TextRPG.csproj.AssemblyReference.cache
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\obj\Debug\TextRPG.csproj.CoreCompileInputs.cache
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\obj\Debug\TextRPG.exe
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\obj\Debug\TextRPG.pdb
+C:\Unity Study\Lion7project\Lion7\TextRPG\TextRPG\obj\Debug\TextRPG.exe.config
