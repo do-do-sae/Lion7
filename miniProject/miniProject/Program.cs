@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ConsoleMiniProject
 {
@@ -7,7 +8,7 @@ namespace ConsoleMiniProject
         public string Name;
         public int HP;
         public int MaxHP;
-        public int Grade; // 0: 일반, 1: 정예, 2: 보스
+        public int Grade;
 
         public Unit(string name, int hp, int grade = 0)
         {
@@ -22,127 +23,148 @@ namespace ConsoleMiniProject
         public string GetHealthBar()
         {
             int barLength = 20;
-            float healthPercentage = (float)HP / MaxHP;
-            if (healthPercentage < 0) healthPercentage = 0;
-
+            float healthPercentage = Math.Max(0, (float)HP / MaxHP);
             int filledLength = (int)(barLength * healthPercentage);
-            string bar = new string('■', filledLength);
-            string empty = new string('░', barLength - filledLength);
-
-            return $"[{bar}{empty}] {HP}/{MaxHP}";
+            return $"[{(new string('■', filledLength))}{(new string('░', barLength - filledLength))}] {HP}/{MaxHP}";
         }
     }
 
     class Program
     {
-        static int mapSize = 20;
+        static int mapSize = 40;
         static int playerX = 0, playerY = 0;
-        static int exitX = 19, exitY = 19;
-
-        static char[,] map = new char[20, 20];
-        static bool[,] traps = new bool[20, 20];
-        static bool[,] items = new bool[20, 20];
-        static string[,] itemType = new string[20, 20];
+        static int exitX = 39, exitY = 39;
+        static char[,] map = new char[40, 40];
+        static bool[,] traps = new bool[40, 40];
+        static bool[,] items = new bool[40, 40];
+        static string[,] itemType = new string[40, 40];
 
         static Unit player;
         static Random rand = new Random();
 
-        // 유물 상태
-        static bool hasExcalibur = false;   // 크게베기 강화
-        static bool hasMoonlight = false;   // 얼음화살 강화
-        static bool hasMysteltein = false;  // 라이트닝 강화
+        static int exLevel = 0;   // 크게베기 (검정/하얀색으로 대체)
+        static int moonLevel = 0; // 얼음화살 (파랑)
+        static int mystLevel = 0; // 라이트닝 (노랑)
+        static int dungeonLevel = 1;
 
         static void Main(string[] args)
         {
-            Console.Title = "던전 탈출: 하드코어 밸런스";
-            SetupGame();
+            Console.Title = "던전 탈출: 속성 마스터 에디션";
+            Console.CursorVisible = true;
+            try { Console.SetWindowSize(110, 55); } catch { }
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("====================================================");
+            Console.WriteLine("              모험의 시작: 용사의 이름              ");
+            Console.WriteLine("====================================================");
+            Console.ResetColor();
+            Console.Write("\n 당신의 이름을 입력하세요: ");
+            string inputName = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(inputName)) inputName = "무명용사";
+
+            player = new Unit(inputName, 200);
+            Console.CursorVisible = false;
 
             while (true)
             {
-                Console.Clear();
-                DrawMap();
+                SetupGame();
+                bool isCleared = PlayLevel();
+                if (isCleared)
+                {
+                    ShowGameClear();
+                    Console.WriteLine($"\n [ 현재 {dungeonLevel}층 돌파 성공! ]");
+                    Console.WriteLine(" 1. 다음 층으로 | 2. 종료");
+                    string choice = Console.ReadLine();
+                    if (choice == "1") { dungeonLevel++; player.HP = Math.Max(player.HP, (int)(player.MaxHP * 0.2f)); continue; }
+                    else { ShowFinalResult(); break; }
+                }
+                else { ShowGameOver(); break; }
+            }
+        }
 
-                Console.WriteLine($"\n{player.Name} 상태: {player.GetHealthBar()}");
-                Console.WriteLine("보유 유물: " +
-                    (hasExcalibur ? " [엑스칼리버]" : "") +
-                    (hasMoonlight ? " [월광]" : "") +
-                    (hasMysteltein ? " [미스틸테인]" : " 없음"));
-                Console.WriteLine("WASD: 이동 | #: 벽, ?: 보물/포션 (함정 몬스터는 숨어있습니다)");
-
+        static bool PlayLevel()
+        {
+            while (true)
+            {
+                Console.SetCursorPosition(0, 0);
+                DrawMapFast();
+                PrintStatus();
+                if (player.IsDead) return false;
+                if (playerX == exitX && playerY == exitY) return true;
                 MovePlayer(Console.ReadKey(true));
                 CheckEvent();
-
-                if (player.IsDead) { ShowGameOver(); break; }
-                if (playerX == exitX && playerY == exitY) { ShowGameClear(); break; }
             }
         }
 
         static void SetupGame()
         {
-            player = new Unit("용사", 120); // 초기 HP 하향 (긴장감 조성)
-
-            // 1. 벽 생성 (70개로 증량 - 더 복잡한 미로)
-            for (int i = 0; i < 70; i++)
+            playerX = 0; playerY = 0;
+            Array.Clear(map, 0, map.Length);
+            Array.Clear(traps, 0, traps.Length);
+            Array.Clear(items, 0, items.Length);
+            Array.Clear(itemType, 0, itemType.Length);
+            for (int i = 0; i < 250; i++)
             {
-                int wx = rand.Next(1, mapSize - 1);
-                int wy = rand.Next(1, mapSize - 1);
-                if (Math.Abs(wx - 0) + Math.Abs(wy - 0) < 3 || Math.Abs(wx - exitX) + Math.Abs(wy - exitY) < 3) continue;
+                int wx = rand.Next(1, mapSize - 1), wy = rand.Next(1, mapSize - 1);
+                if (Math.Abs(wx - playerX) + Math.Abs(wy - playerY) < 3 || Math.Abs(wx - exitX) + Math.Abs(wy - exitY) < 3) continue;
                 map[wy, wx] = '#';
             }
-
-            // 2. 몬스터 배치 (20마리)
             int mCount = 0;
-            while (mCount < 20)
+            while (mCount < 50)
             {
                 int rx = rand.Next(0, mapSize), ry = rand.Next(0, mapSize);
-                if (map[ry, rx] == '#' || (rx == 0 && ry == 0) || (rx == exitX && ry == exitY) || traps[ry, rx]) continue;
+                if (map[ry, rx] == '#' || traps[ry, rx]) continue;
                 traps[ry, rx] = true; mCount++;
             }
-
-            // 3. 아이템 배치 (보물 3개, 포션 6개)
             string[] treasures = { "엑스칼리버", "월광", "미스틸테인" };
             int iCount = 0;
-            while (iCount < 9)
+            while (iCount < 20)
             {
                 int rx = rand.Next(0, mapSize), ry = rand.Next(0, mapSize);
                 if (map[ry, rx] == '#' || traps[ry, rx] || items[ry, rx]) continue;
                 items[ry, rx] = true;
-                itemType[ry, rx] = (iCount < 3) ? treasures[iCount] : "포션";
+                itemType[ry, rx] = (iCount < 9) ? treasures[iCount % 3] : "포션";
                 iCount++;
             }
         }
 
-        static void DrawMap()
+        static void DrawMapFast()
         {
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < mapSize; i++)
             {
                 for (int j = 0; j < mapSize; j++)
                 {
-                    if (i == playerY && j == playerX) { Console.ForegroundColor = ConsoleColor.Cyan; Console.Write("P "); }
-                    else if (i == exitY && j == exitX) { Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("E "); }
-                    else if (map[i, j] == '#') { Console.ForegroundColor = ConsoleColor.White; Console.Write("# "); }
-                    else if (items[i, j]) { Console.ForegroundColor = ConsoleColor.Magenta; Console.Write("? "); }
-                    else { Console.ForegroundColor = ConsoleColor.DarkGray; Console.Write(". "); }
+                    if (i == playerY && j == playerX) sb.Append("P ");
+                    else if (i == exitY && j == exitX) sb.Append("E ");
+                    else if (map[i, j] == '#') sb.Append("# ");
+                    else if (items[i, j]) sb.Append("? ");
+                    else if (traps[i, j]) sb.Append("M ");
+                    else sb.Append(". ");
                 }
-                Console.WriteLine();
+                sb.AppendLine();
             }
-            Console.ResetColor();
+            Console.WriteLine(sb.ToString());
+        }
+
+        static void PrintStatus()
+        {
+            Console.WriteLine($"\n[LV.{dungeonLevel}] {player.Name} HP: {player.GetHealthBar()}");
+            Console.Write("보유 유물: ");
+            if (exLevel > 0) { Console.ForegroundColor = ConsoleColor.White; Console.Write($"[엑스칼리버 +{exLevel}] "); }
+            if (moonLevel > 0) { Console.ForegroundColor = ConsoleColor.Blue; Console.Write($"[월광 +{moonLevel}] "); }
+            if (mystLevel > 0) { Console.ForegroundColor = ConsoleColor.Yellow; Console.Write($"[미스틸테인 +{mystLevel}] "); }
+            Console.ResetColor(); Console.WriteLine("\nWASD: 이동 | M: 전투 시작");
         }
 
         static void MovePlayer(ConsoleKeyInfo key)
         {
             int nx = playerX, ny = playerY;
-            switch (key.Key)
-            {
-                case ConsoleKey.W: ny--; break;
-                case ConsoleKey.S: ny++; break;
-                case ConsoleKey.A: nx--; break;
-                case ConsoleKey.D: nx++; break;
-            }
-            if (nx >= 0 && nx < mapSize && ny >= 0 && ny < mapSize && map[ny, nx] != '#')
-            {
-                playerX = nx; playerY = ny;
-            }
+            if (key.Key == ConsoleKey.W) ny--;
+            else if (key.Key == ConsoleKey.S) ny++;
+            else if (key.Key == ConsoleKey.A) nx--; else if (key.Key == ConsoleKey.D) nx++;
+            if (nx >= 0 && nx < mapSize && ny >= 0 && ny < mapSize && map[ny, nx] != '#') { playerX = nx; playerY = ny; }
         }
 
         static void CheckEvent()
@@ -150,102 +172,177 @@ namespace ConsoleMiniProject
             if (items[playerY, playerX])
             {
                 string t = itemType[playerY, playerX];
-                if (t == "포션")
-                {
-                    int h = rand.Next(15, 30); player.HP = Math.Min(player.MaxHP, player.HP + h);
-                    Console.WriteLine($"\n[+] 낡은 포션을 발견했습니다. HP +{h}");
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine($"\n[★] {t}을(를) 획득했습니다! 무기의 기운이 달라집니다.");
-                    if (t == "엑스칼리버") hasExcalibur = true;
-                    if (t == "월광") hasMoonlight = true;
-                    if (t == "미스틸테인") hasMysteltein = true;
-                    Console.ResetColor();
-                }
-                items[playerY, playerX] = false; Console.ReadKey();
+                if (t == "포션") { int h = rand.Next(40, 70); player.HP = Math.Min(player.MaxHP, player.HP + h); }
+                else if (t == "엑스칼리버") exLevel++; else if (t == "월광") moonLevel++; else if (t == "미스틸테인") mystLevel++;
+                items[playerY, playerX] = false; Console.Clear();
             }
-            if (traps[playerY, playerX]) { if (StartBattle()) traps[playerY, playerX] = false; }
+            if (traps[playerY, playerX]) { if (StartBattle()) traps[playerY, playerX] = false; Console.Clear(); }
+        }
+
+        static void DrawEntity(string name)
+        {
+            // 몬스터별 색상 적용
+            switch (name)
+            {
+                case "고블린": Console.ForegroundColor = ConsoleColor.Green; break;
+                case "강철 골렘": Console.ForegroundColor = ConsoleColor.Gray; break;
+                case "심연의 드래곤": Console.ForegroundColor = ConsoleColor.Red; break;
+            }
+
+            switch (name)
+            {
+                case "고블린":
+                    Console.WriteLine(@"
+              _   _          [ 상성 가이드 ]
+             ( \_/ )         얼음화살 -> 고블린 (강함)
+            / @   @ \        라이트닝 -> 고블린 (약함)
+           ( >  0  < )       
+            \_______/        ""키킥.. 얼음은 싫어!"" ");
+                    break;
+                case "강철 골렘":
+                    Console.WriteLine(@"
+             _________       [ 상성 가이드 ]
+            /         \      라이트닝 -> 골렘 (강함)
+           |  [O] [O]  |     크게베기 -> 골렘 (약함)
+           |   _____   |     
+           |  |_____|  |     ""찌릿찌릿.. 과부하.."" ");
+                    break;
+                case "심연의 드래곤":
+                    Console.WriteLine(@"
+                  __    __   [ 상성 가이드 ]
+                 /  \  /  \  크게베기 -> 드래곤 (강함)
+           _____/ __ \/ __ \ 얼음화살 -> 드래곤 (약함)
+          /      \  /  \  /  
+         |  (X)   \/    \/   ""칼날이.. 따갑구나!"" ");
+                    break;
+            }
+            Console.ResetColor();
         }
 
         static bool StartBattle()
         {
-            int r = rand.Next(0, 100);
-            // 밸런스 조정: 몬스터 체력 대폭 상향
-            Unit monster = (r < 50) ? new Unit("해골 병사", 70, 0) :
-                           (r < 85) ? new Unit("강철 골렘", 180, 1) :
-                           new Unit("심연의 드래곤", 450, 2);
+            int hpBonus = (dungeonLevel - 1) * 50;
+            Unit monster = (rand.Next(0, 100) < 60) ? new Unit("고블린", 100 + hpBonus, 0) :
+                           (rand.Next(0, 100) < 90) ? new Unit("강철 골렘", 250 + hpBonus, 1) :
+                           new Unit("심연의 드래곤", 600 + hpBonus, 2);
 
-            string log = $"{monster.Name}이(가) 당신의 앞을 막아섰습니다!";
+            string log = $"{monster.Name}과 전투 시작!";
 
             while (!player.IsDead && !monster.IsDead)
             {
                 Console.Clear();
-                Console.WriteLine("======================= 위 기 상 황 =======================");
-                Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine($" PLAYER : {player.GetHealthBar()}");
-                Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($" ENEMY  : {monster.GetHealthBar()}");
-                Console.ResetColor();
+                Console.WriteLine($"\n======================= {dungeonLevel}층 전투 =======================");
+                DrawEntity(monster.Name);
                 Console.WriteLine("=========================================================");
-                Console.WriteLine($" 상황: {log}");
-                Console.WriteLine("---------------------------------------------------------");
-                Console.WriteLine($" 1. 크게베기 [근접]   {(hasExcalibur ? "-> [엑스칼리버]" : "")}");
-                Console.WriteLine($" 2. 얼음화살 [제어]   {(hasMoonlight ? "-> [월광]" : "")}");
-                Console.WriteLine($" 3. 라이트닝 [폭발]   {(hasMysteltein ? "-> [미스틸테인]" : "")}");
-                Console.Write(" 행동 선택: ");
+                Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine($" [플레이어] {player.Name} : {player.GetHealthBar()}");
+                Console.WriteLine("=========================================================");
 
+                // 스킬 메뉴 출력 (색상 적용)
+                PrintSkillMenu(1, "크게베기/엑스칼리버", exLevel, 30 + (exLevel * 50), ConsoleColor.White);
+                PrintSkillMenu(2, "얼음화살/월광", moonLevel, 25 + (moonLevel * 40), ConsoleColor.Blue);
+                PrintSkillMenu(3, "라이트닝/미스틸테인", mystLevel, 50 + (mystLevel * 70), ConsoleColor.Yellow);
+
+                Console.Write("\n 행동 선택: ");
                 string c = Console.ReadLine();
-                int pd = 0; int ps = 0; // 플레이어 데미지, 플레이어 자가 피해
+                int baseDamage = 0; string attr = "";
+                if (c == "1") { baseDamage = 30 + (exLevel * 50); attr = "PHYSICAL"; }
+                else if (c == "2") { baseDamage = 25 + (moonLevel * 40); attr = "ICE"; }
+                else if (c == "3") { baseDamage = 50 + (mystLevel * 70); attr = "LIGHTNING"; }
+                else continue;
 
-                if (c == "1") pd = hasExcalibur ? 65 : 25;
-                else if (c == "2") pd = hasMoonlight ? 50 : 20;
-                else if (c == "3") { pd = hasMysteltein ? 100 : 45; ps = 10; } // 라이트닝은 자가피해 10 발생
+                // 상성 계산 로직
+                float modifier = 1.0f;
+                if (monster.Name == "고블린")
+                {
+                    if (attr == "ICE") modifier = 2.0f;
+                    else if (attr == "LIGHTNING") modifier = 0.5f;
+                }
+                else if (monster.Name == "강철 골렘")
+                {
+                    if (attr == "LIGHTNING") modifier = 2.0f;
+                    else if (attr == "PHYSICAL") modifier = 0.5f;
+                }
+                else if (monster.Name == "심연의 드래곤")
+                {
+                    if (attr == "PHYSICAL") modifier = 2.0f;
+                    else if (attr == "ICE") modifier = 0.5f;
+                }
 
-                monster.HP -= pd;
-                player.HP -= ps;
-                log = (pd > 0) ? $"{player.Name}의 공격! ({pd} 피해" + (ps > 0 ? $", 자신도 {ps} 피해)" : ")") : "공격이 빗나갔습니다!";
+                int finalDamage = (int)(baseDamage * modifier);
+                monster.HP -= finalDamage;
+                log = $"{finalDamage} 데미지! " + (modifier > 1.0f ? "(효과가 굉장했다!)" : modifier < 1.0f ? "(효과가 별로다..)" : "");
 
                 if (!monster.IsDead)
                 {
-                    // 몬스터 공격력 강화
-                    int md = rand.Next(12, 22) + (monster.Grade * 20);
-                    player.HP -= md; log += $" / {monster.Name}의 반격! ({md} 피해)";
+                    int md = rand.Next(15, 25) + (monster.Grade * 20) + (dungeonLevel * 5);
+                    player.HP -= md;
+                    log += $" / {monster.Name}의 {md} 반격!";
                 }
             }
             if (player.IsDead) return false;
-            Console.WriteLine($"\n전투 승리! 숨을 고르며 전진합니다."); Console.ReadKey(); return true;
+            Console.WriteLine("\n전투 승리!"); Console.ReadKey(); return true;
+        }
+
+        static void PrintSkillMenu(int num, string name, int level, int damage, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.Write($" {num}. {name} ");
+            Console.ResetColor();
+            Console.WriteLine($"(기본: {damage}) " + (level > 0 ? $"[+{level} 강화]" : ""));
         }
 
         static void ShowGameOver()
         {
             Console.Clear(); Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(@"
-====================================================
-  _____   ___  ___  ___ _____   _____  _   _  _____ ______ 
- |  __ \ / _ \ |  \/  ||  ___| |  _  || | | ||  ___|| ___ \
- | |  \// /_\ \| .  . || |__   | | | || | | || |__  | |_/ /
- | | __ |  _  || |\/| ||  __|  | | | || | | ||  __| |  __/ 
- | |_\ \| | | || |  | || |___  \ \_/ /\ \_/ /| |___ | |    
-  \____/\_| |_/\_|  |_/\____/   \___/  \___/ \____/ \_|    
-====================================================
-           던전의 어둠이 당신을 삼켰습니다...");
+    ====================================================
+ _____   ___  ___  ___ _____   _____  _   _  _____ ______ 
+|  __ \ / _ \ |  \/  ||  ___| |  _  || | | ||  ___|| ___ \
+| |  \// /_\ \| .  . || |__   | | | || | | || |__  | |_/ /
+| | __ |  _  || |\/| ||  __|  | | | || | | ||  __| |    / 
+| |_\ \| | | || |  | || |___  \ \_/ /\ \_/ /| |___ | |\ \      
+ \____/\_| |_/\_|  |_/\____/   \___/  \___/ \____/ \_| \_|    
+    ====================================================
+            던전의 어둠이 당신을 삼켰습니다...");
             Console.ResetColor(); Console.ReadKey();
         }
-
         static void ShowGameClear()
         {
-            Console.Clear(); Console.ForegroundColor = ConsoleColor.Green;
+            Console.Clear(); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(@"
 ====================================================
-  _____  _      _____   ___  ______ 
- /  __ \| |    |  ___| / _ \ | ___ \
- | /  \/| |    | |__  / /_\ \| |_/ /
- | |    | |    |  __| |  _  ||    / 
- | \__/\| |____| |___ | | | || |\ \ 
-  \____/\_____/\____/ \_| |_/\_| \_|
+         _____  _       _____   ___  ______ 
+        /  __ \| |     |  ___| / _ \ | ___ \
+        | /  \/| |     | |__  / /_\ \| |_/ /
+        | |    | |     |  __| |  _  ||    / 
+        | \__/\| |____| |___ | | | || |\ \ 
+         \____/\_____/\____/ \_| |_/\_| \_|
 ====================================================
-           당신은 던전의 전설이 되어 돌아왔습니다!");
-            Console.ResetColor(); Console.ReadKey();
+       당신은 던전의 전설이 되어 돌아왔습니다!");
+            Console.ResetColor();
+        }
+        static void ShowFinalResult()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("====================================================");
+            Console.WriteLine("               🎉 전설의 용사 성적표 🎉               ");
+            Console.WriteLine("====================================================");
+            Console.ResetColor();
+
+            Console.WriteLine($"\n ▶ 최종 돌파 층수: {dungeonLevel}층");
+            Console.WriteLine($" ▶ 용사의 이름    : {player.Name}");
+
+            Console.WriteLine("\n [ 최종 유물 강화 상태 ]");
+            Console.WriteLine($" - 엑스칼리버: +{exLevel}");
+            Console.WriteLine($" - 월광      : +{moonLevel}");
+            Console.WriteLine($" - 미스틸테인: +{mystLevel}");
+
+            Console.WriteLine("\n====================================================");
+            Console.WriteLine("     고생하셨습니다! 아무 키나 누르면 종료됩니다.     ");
+            Console.WriteLine("====================================================");
+            Console.ReadKey();
         }
     }
 }
